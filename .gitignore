@@ -30,3 +30,16 @@
 *.exe
 *.out
 *.app
+
+# Build results
+.vs/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+TempReleases

@@ -33,7 +33,6 @@ Description  -
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-
 [assembly: AssemblyTitle("Eyedia's Core Security Framework - Test Application")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]

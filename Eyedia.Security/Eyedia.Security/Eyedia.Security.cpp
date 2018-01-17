@@ -22,7 +22,7 @@ extern "C" __declspec(dllexport) int Authenticate(const char* user, const char* 
 
 extern "C" __declspec(dllexport) BSTR Encrypt(char* plaintext)
 {
-	string plainstr(plaintext);
+	string plainstr(plaintext, strlen(plaintext) + 1);
 	string decstr = EncryptCpp(plainstr);
 	BSTR s = ::SysAllocString(CComBSTR(decstr.c_str()));
 	return s;

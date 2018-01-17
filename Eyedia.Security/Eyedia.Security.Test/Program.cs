@@ -46,10 +46,16 @@ namespace Eyedia.Security.Test
         private static extern string Encrypt(string plaintext);
 
         [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
+        [return: MarshalAs(UnmanagedType.BStr)]
+        private static extern string Test(string plaintext);
+
+        [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern int IsEqual(string plaintext, string enctext);        
 
         static void Main(string[] args)
         {
+            string s = Test("deb");
+            return;
             //**********************positive cases********************************************/  
             //long password
             string password_to_encrypt = "ababababccccccccababababccccccccababababccccccccxxx12ababababccccccccababababccccccccababababccccccccxxx12debjyoti";

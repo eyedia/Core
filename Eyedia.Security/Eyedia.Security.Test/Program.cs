@@ -53,9 +53,7 @@ namespace Eyedia.Security.Test
         private static extern int IsEqual(string plaintext, string enctext);        
 
         static void Main(string[] args)
-        {
-            string s = Test("deb");
-            return;
+        {           
             //**********************positive cases********************************************/  
             //long password
             string password_to_encrypt = "ababababccccccccababababccccccccababababccccccccxxx12ababababccccccccababababccccccccababababccccccccxxx12debjyoti";

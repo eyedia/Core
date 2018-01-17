@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Eyedia.Security.Test</RootNamespace>
-    <AssemblyName>Eyedia.Security.Test</AssemblyName>
+    <AssemblyName>TestSecurity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

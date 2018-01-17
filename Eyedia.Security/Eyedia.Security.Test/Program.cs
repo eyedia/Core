@@ -30,7 +30,7 @@ Description  -
 
 #endregion Copyright Notice
 
-using System.Text;
+
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
@@ -42,23 +42,42 @@ namespace Eyedia.Security.Test
         private static extern int Authenticate(string user, string password);
 
         [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int Encrypt(StringBuilder plaintext, int length);
+        [return: MarshalAs(UnmanagedType.BStr)]
+        private static extern string Encrypt(string plaintext);
 
         [DllImport(@"Eyedia.Security.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int IsEqual(StringBuilder plaintext, int plaintextlength, StringBuilder enctext, int enctextlength);
+        private static extern int IsEqual(string plaintext, string enctext);        
 
         static void Main(string[] args)
         {
-            StringBuilder orginal = new StringBuilder("debjyoti");
-            int l = Encrypt(orginal, orginal.Length);
-            StringBuilder compare_correct = new StringBuilder("debjyoti");
-            StringBuilder compare_incorrect = new StringBuilder("deb");
+            //**********************positive cases********************************************/  
+            //long password
+            string password_to_encrypt = "ababababccccccccababababccccccccababababccccccccxxx12ababababccccccccababababccccccccababababccccccccxxx12debjyoti";
+            string encrypted_password = Encrypt(password_to_encrypt);
+            string correct_test_password = "ababababccccccccababababccccccccababababccccccccxxx12ababababccccccccababababccccccccababababccccccccxxx12debjyoti";
+            int result = IsEqual(correct_test_password, encrypted_password);
+            Debug.Assert(result == 1, "long password failed");
 
-            int x = IsEqual(compare_correct, compare_correct.Length, orginal, orginal.Length);
-            Debug.Assert(x == 1, "Compare correct password failed!");
+            //standard password
+            password_to_encrypt = "password123";
+            encrypted_password = Encrypt(password_to_encrypt);
+            correct_test_password = "password123";
+            result = IsEqual(correct_test_password, encrypted_password);
+            Debug.Assert(result == 1, "standard password failed");
 
-            x = IsEqual(compare_incorrect, compare_correct.Length, orginal, orginal.Length);
-            Debug.Assert(x == 1, "Compare incorrect password failed!");
+            //short password
+            password_to_encrypt = "pass";
+            encrypted_password = Encrypt(password_to_encrypt);
+            correct_test_password = "pass";
+            result = IsEqual(correct_test_password, encrypted_password);
+            Debug.Assert(result == 1, "short password failed");
+
+            //**********************negative cases********************************************/            
+            password_to_encrypt = "password123";
+            encrypted_password = Encrypt(password_to_encrypt);
+            string incorrect_test_password = "somethingelse";
+            result = IsEqual(incorrect_test_password, encrypted_password);
+            Debug.Assert(result == 0, "negative test password failed");
         }
     }
 }

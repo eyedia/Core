@@ -128,8 +128,8 @@ using namespace std;
 
 void CharStr2HexStr(const unsigned char* pucCharStr, char* pszHexStr, int iSize);
 void HexStr2CharStr(const char* pszHexStr, unsigned char* pucCharStr, int iSize);
-string Encrypt(string plaintext);
-string Decrypt(string enctext);
+string EncryptCpp(string plaintext);
+string DecryptCpp(string enctext);
 
 
 //Block Structure

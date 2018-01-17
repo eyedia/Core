@@ -5,7 +5,7 @@
 using namespace std;
 
 
-string Encrypt(string plaintext)
+string EncryptCpp(string plaintext)
 {  
  //string plaintext = "ababababccccccccababababccccccccababababccccccccxxx12ababababccccccccababababccccccccababababccccccccxxx12debjyoti";  
   char* plaintextchar = new char[plaintext.length()];
@@ -35,7 +35,7 @@ string Encrypt(string plaintext)
 }
 
 
-string Decrypt(string enctext)
+string DecryptCpp(string enctext)
 {  
  /*string enctext;
   ifstream in("out1.txt");
